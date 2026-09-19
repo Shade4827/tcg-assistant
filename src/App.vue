@@ -17,19 +17,15 @@ const closeModal = () => {
 
 <template>
   <h1>TCG Assist</h1>
-  <ModalButton modal="user" @click="handleClick">
-    <template #header>
-      <h2>Menu</h2>
-    </template>
-    <template #body>
-      <p>Menu body content</p>
-    </template>
+  <ModalButton modal="user" headerText="User Menu" @click="handleClick">
+    <p>Menu body content</p>
   </ModalButton>
 
-  <BaseModal :show="activeModal === 'user'" @close="closeModal">
-    <template #header>
-      <h3>Custom Header</h3>
-    </template>
+  <BaseModal
+    :show="activeModal === 'user'"
+    :headerText="activeModal === 'user' ? 'User Menu' : undefined"
+    @close="closeModal"
+  >
   </BaseModal>
 </template>
 
