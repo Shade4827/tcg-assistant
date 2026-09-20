@@ -12,7 +12,7 @@ const emit = defineEmits<{
 <template>
   <Teleport to="body">
     <Transition name="modal">
-      <div v-if="props.show" class="outline rouded-md p-2">
+      <div v-if="props.show" class="outline rouded-md p-2 w-92">
         <div>
           <h3 v-if="props.headerText">{{ props.headerText }}</h3>
 
