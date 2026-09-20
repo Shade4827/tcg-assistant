@@ -27,7 +27,7 @@ const handleChange = (id: string) => {
 
 <template>
   <BaseModal :show="props.show" headerText="Luhrgoyf Menu" @close="emit('close')">
-    <div class="grid grid-cols-2 gap-2 mb-4">
+    <div class="grid grid-cols-2 gap-2 mb-2">
       <div v-for="item in items" :key="item.id" class="whitespace-nowrap">
         <input
           type="checkbox"
@@ -39,34 +39,39 @@ const handleChange = (id: string) => {
         <label :for="item.id">{{ item.label }}</label>
       </div>
     </div>
-    <div class="flex items-center gap-2 mb-4">
-      <p class="h-6 leading-6">すべての墓地のクリーチャーの総数:</p>
-      <input
-        type="number"
-        min="0"
-        step="1"
-        :value="props.allGraveyardCreatureCount"
-        class="border rounded h-6 leading-6 p-1 w-12 text-right"
-        @change="
-          emit(
-            'update:allGraveyardCreatureCount',
-            Number(($event.target as HTMLInputElement).value),
-          )
-        "
-      />
-    </div>
-    <div class="flex items-center gap-2 mb-4">
-      <p class="h-6 leading-6">自分の墓地のクリーチャーの総数:</p>
-      <input
-        type="number"
-        min="0"
-        step="1"
-        :value="props.myGraveyardCreatureCount"
-        class="border rounded h-6 leading-6 p-1 w-12 text-right"
-        @change="
-          emit('update:myGraveyardCreatureCount', Number(($event.target as HTMLInputElement).value))
-        "
-      />
+    <div class="flex flex-col gap-2 mb-4">
+      <div class="flex items-center gap-2">
+        <p class="h-7 leading-7">すべての墓地のクリーチャーの総数:</p>
+        <input
+          type="number"
+          min="0"
+          step="1"
+          :value="props.allGraveyardCreatureCount"
+          class="border rounded h-7 leading-7 p-1 w-12 ml-auto text-right self-end"
+          @change="
+            emit(
+              'update:allGraveyardCreatureCount',
+              Number(($event.target as HTMLInputElement).value),
+            )
+          "
+        />
+      </div>
+      <div class="flex items-center gap-2">
+        <p class="h-7 leading-7">自分の墓地のクリーチャーの総数:</p>
+        <input
+          type="number"
+          min="0"
+          step="1"
+          :value="props.myGraveyardCreatureCount"
+          class="border rounded h-7 leading-7 p-1 w-12 ml-auto text-right self-end"
+          @change="
+            emit(
+              'update:myGraveyardCreatureCount',
+              Number(($event.target as HTMLInputElement).value),
+            )
+          "
+        />
+      </div>
     </div>
   </BaseModal>
 </template>
