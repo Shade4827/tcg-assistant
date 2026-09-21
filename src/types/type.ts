@@ -11,3 +11,6 @@ const modals = {
 } as const
 
 export type ModalId = keyof typeof modals
+
+export type ManaColor = ['white', 'blue', 'black', 'red', 'green', 'colorless']
+export type ManaCount = Record<ManaColor[number], { value: number; color: string }>

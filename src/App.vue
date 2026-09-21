@@ -2,7 +2,8 @@
 import { ref } from 'vue'
 import ModalButton from '@/components/ModalButton.vue'
 import LuhrgoyfModal from '@/components/modals/LuhrgoyfModal.vue'
-import type { ModalId } from '@/types/type'
+import ManaModal from '@/components/modals/ManaModal.vue'
+import type { ModalId, ManaCount } from '@/types/type'
 
 const activeModal = ref<ModalId | null>(null)
 
@@ -29,12 +30,68 @@ const luhrgoyfCheckBoxes = [
 const checkedIds = ref<string[]>([])
 const allGraveyardCreatureCount = ref<number>(0)
 const myGraveyardCreatureCount = ref<number>(0)
+
+const manaCount = ref<ManaCount>({
+  white: {
+    value: 0,
+    color: 'bg-white text-black border-black',
+  },
+  blue: {
+    value: 0,
+    color: 'bg-blue-500 text-white border-black',
+  },
+  black: {
+    value: 0,
+    color: 'bg-black text-white border-black',
+  },
+  red: {
+    value: 0,
+    color: 'bg-red-500 text-white border-black',
+  },
+  green: {
+    value: 0,
+    color: 'bg-green-500 text-white border-black',
+  },
+  colorless: {
+    value: 0,
+    color: 'bg-gray-500 text-white border-black',
+  },
+})
+
+const resetManaCount = () => {
+  manaCount.value = {
+    white: {
+      ...manaCount.value.white,
+      value: 0,
+    },
+    blue: {
+      ...manaCount.value.blue,
+      value: 0,
+    },
+    black: {
+      ...manaCount.value.black,
+      value: 0,
+    },
+    red: {
+      ...manaCount.value.red,
+      value: 0,
+    },
+    green: {
+      ...manaCount.value.green,
+      value: 0,
+    },
+    colorless: {
+      ...manaCount.value.colorless,
+      value: 0,
+    },
+  }
+}
 </script>
 
 <template>
   <h1>TCG Assist</h1>
 
-  <ModalButton modal="lhurgoyf" headerText="ルアゴイフカウント" @click="handleClick">
+  <ModalButton modal="lhurgoyf" header-text="ルアゴイフカウント" @click="handleClick">
     <p>
       カードタイプ: <span class="font-bold">{{ checkedIds.length }}</span> 種類
     </p>
@@ -49,6 +106,29 @@ const myGraveyardCreatureCount = ref<number>(0)
     </div>
   </ModalButton>
 
+  <ModalButton modal="mana" header-text="マナカウンター" @click="handleClick">
+    <div class="flex gap-4">
+      <p>
+        白: <span class="font-bold">{{ manaCount.white.value }}</span>
+      </p>
+      <p>
+        青: <span class="font-bold">{{ manaCount.blue.value }}</span>
+      </p>
+      <p>
+        黒: <span class="font-bold">{{ manaCount.black.value }}</span>
+      </p>
+      <p>
+        赤: <span class="font-bold">{{ manaCount.red.value }}</span>
+      </p>
+      <p>
+        緑: <span class="font-bold">{{ manaCount.green.value }}</span>
+      </p>
+      <p>
+        無: <span class="font-bold">{{ manaCount.colorless.value }}</span>
+      </p>
+    </div>
+  </ModalButton>
+
   <LuhrgoyfModal
     v-model:checkIds="checkedIds"
     v-model:allGraveyardCreatureCount="allGraveyardCreatureCount"
@@ -56,6 +136,13 @@ const myGraveyardCreatureCount = ref<number>(0)
     :show="activeModal === 'lhurgoyf'"
     :items="luhrgoyfCheckBoxes"
     @close="closeModal"
+  />
+
+  <ManaModal
+    v-model:manaCount="manaCount"
+    :show="activeModal === 'mana'"
+    @close="closeModal"
+    @reset="resetManaCount"
   />
 </template>
 
