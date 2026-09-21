@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import ModalButton from '@/components/ModalButton.vue'
 import LuhrgoyfModal from '@/components/modals/LuhrgoyfModal.vue'
 import ManaModal from '@/components/modals/ManaModal.vue'
-import type { ModalId, ManaCount } from '@/types/type'
+import EmblemModal from '@/components/modals/EmblemModal.vue'
+import type { ModalId, ManaCount, Emblem } from '@/types/type'
 
 const activeModal = ref<ModalId | null>(null)
 
@@ -30,6 +31,12 @@ const LURGOYD_CHECKBOXES = [
 const checkedIds = ref<string[]>([])
 const allGraveyardCreatureCount = ref<number>(0)
 const myGraveyardCreatureCount = ref<number>(0)
+
+const resetLuhrgyfCount = () => {
+  checkedIds.value = []
+  allGraveyardCreatureCount.value = 0
+  myGraveyardCreatureCount.value = 0
+}
 
 const manaCount = ref<ManaCount>({
   white: {
@@ -58,12 +65,6 @@ const manaCount = ref<ManaCount>({
   },
 })
 
-const resetLuhrgyfCount = () => {
-  checkedIds.value = []
-  allGraveyardCreatureCount.value = 0
-  myGraveyardCreatureCount.value = 0
-}
-
 const resetManaCount = () => {
   manaCount.value = {
     white: {
@@ -91,6 +92,16 @@ const resetManaCount = () => {
       value: 0,
     },
   }
+}
+
+const emblemList = ref<Emblem[]>([])
+
+const emblemText = computed(() => {
+  return emblemList.value.map((emblem) => `${emblem.name}: ${emblem.count}`).join(', ')
+})
+
+const resetEmblemList = () => {
+  emblemList.value = []
 }
 </script>
 
@@ -135,6 +146,15 @@ const resetManaCount = () => {
         </p>
       </div>
     </ModalButton>
+
+    <ModalButton modal="emblem" header-text="紋章管理" @click="handleClick">
+      <p>
+        紋章の数: <span class="font-bold">{{ emblemList.length }}</span>
+      </p>
+      <p class="w-80 truncate">
+        {{ emblemText }}
+      </p>
+    </ModalButton>
   </div>
 
   <LuhrgoyfModal
@@ -152,6 +172,13 @@ const resetManaCount = () => {
     :show="activeModal === 'mana'"
     @close="closeModal"
     @reset="resetManaCount"
+  />
+
+  <EmblemModal
+    v-model="emblemList"
+    :show="activeModal === 'emblem'"
+    @close="closeModal"
+    @reset="resetEmblemList"
   />
 </template>
 
