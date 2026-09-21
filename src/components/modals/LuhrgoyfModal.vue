@@ -75,11 +75,7 @@ const handleChange = (id: string) => {
       </div>
     </div>
     <div class="flex justify-center mt-4">
-      <button
-        type="button"
-        class="border py-2 px-4 rounded hover:bg-red-600 transition duration-300"
-        @click="emit('reset')"
-      >
+      <button type="button" class="border py-2 px-4 rounded" @click="emit('reset')">
         リセット
       </button>
     </div>
