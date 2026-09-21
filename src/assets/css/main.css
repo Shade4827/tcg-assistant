@@ -21,13 +21,14 @@ body {
 
 header {
   max-width: 500px;
+  height: 5vh;
   margin: 0 auto;
 }
 
 main {
   width: 100%;
   max-width: 500px;
-  min-height: 100vh;
+  min-height: 95vh;
   margin: 0 auto;
   background-color: white;
 }

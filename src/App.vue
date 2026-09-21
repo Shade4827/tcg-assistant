@@ -127,7 +127,7 @@ const resetAll = () => {
 </script>
 
 <template>
-  <header class="flex bg-blue-500 p-1">
+  <header class="sticky top-0 flex bg-blue-500 p-1">
     <h1 class="flex-1 p-1 text-xl text-white font-bold">TCG Assist</h1>
     <button class="justify-end mr-2 text-white text-2xl" @click="resetAll">↻</button>
   </header>
@@ -183,9 +183,9 @@ const resetAll = () => {
 
       <hr class="text-gray-400" />
 
-      <div class="flex items-center border rounded p-2 h-12">
-        <p class="flex-1">呪文を唱えた回数:</p>
-        <NumberControl v-model="spellCount" class="h-8 w-32 justify-end" />
+      <div class="flex items-center rounded p-2 h-12 bg-cyan-500">
+        <p class="flex-1 text-white font-bold">呪文を唱えた回数</p>
+        <NumberControl v-model="spellCount" class="h-8 w-32 justify-end bg-white" />
       </div>
 
       <button
