@@ -12,6 +12,7 @@ const increment = () => {
 }
 
 const decrement = () => {
+  if (props.modelValue <= 0) return
   emit('update:modelValue', props.modelValue - 1)
 }
 </script>

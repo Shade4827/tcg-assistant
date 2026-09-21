@@ -4,6 +4,7 @@ import ModalButton from '@/components/ModalButton.vue'
 import LuhrgoyfModal from '@/components/modals/LuhrgoyfModal.vue'
 import ManaModal from '@/components/modals/ManaModal.vue'
 import EmblemModal from '@/components/modals/EmblemModal.vue'
+import NumberControl from '@/components/NumberControl.vue'
 import type { ModalId, ManaCount, Emblem } from '@/types/type'
 
 const activeModal = ref<ModalId | null>(null)
@@ -104,6 +105,8 @@ const resetEmblemList = () => {
   emblemList.value = []
 }
 
+const spellCount = ref(0)
+
 const isExcerciseRight = ref(false)
 
 const toggleExcerciseRight = () => {
@@ -165,6 +168,13 @@ const bgColorIsExcerciseRight = computed(() => {
         {{ emblemText }}
       </p>
     </ModalButton>
+
+    <hr class="text-gray-400" />
+
+    <div class="flex items-center border rounded p-2 h-12">
+      <p class="flex-1">呪文を唱えた回数:</p>
+      <NumberControl v-model="spellCount" class="h-8 w-32 justify-end" />
+    </div>
 
     <button
       type="button"
