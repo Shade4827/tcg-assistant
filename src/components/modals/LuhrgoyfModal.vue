@@ -14,6 +14,7 @@ const emit = defineEmits<{
   'update:checkIds': [value: string[]]
   'update:allGraveyardCreatureCount': [value: number]
   'update:myGraveyardCreatureCount': [value: number]
+  reset: []
 }>()
 
 const handleChange = (id: string) => {
@@ -26,7 +27,7 @@ const handleChange = (id: string) => {
 </script>
 
 <template>
-  <BaseModal :show="props.show" headerText="Luhrgoyf Menu" @close="emit('close')">
+  <BaseModal :show="props.show" headerText="ルアゴイフカウンター" @close="emit('close')">
     <div class="grid grid-cols-2 gap-2 mb-2">
       <div v-for="item in items" :key="item.id" class="whitespace-nowrap">
         <input
@@ -72,6 +73,15 @@ const handleChange = (id: string) => {
           "
         />
       </div>
+    </div>
+    <div class="flex justify-center mt-4">
+      <button
+        type="button"
+        class="border py-2 px-4 rounded hover:bg-red-600 transition duration-300"
+        @click="emit('reset')"
+      >
+        リセット
+      </button>
     </div>
   </BaseModal>
 </template>

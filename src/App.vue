@@ -15,7 +15,7 @@ const closeModal = () => {
   activeModal.value = null
 }
 
-const luhrgoyfCheckBoxes = [
+const LURGOYD_CHECKBOXES = [
   { id: 'checkbox-creature', label: 'クリーチャー' },
   { id: 'checkbox-land', label: '土地' },
   { id: 'checkbox-artifact', label: 'アーティファクト' },
@@ -58,6 +58,12 @@ const manaCount = ref<ManaCount>({
   },
 })
 
+const resetLuhrgyfCount = () => {
+  checkedIds.value = []
+  allGraveyardCreatureCount.value = 0
+  myGraveyardCreatureCount.value = 0
+}
+
 const resetManaCount = () => {
   manaCount.value = {
     white: {
@@ -91,7 +97,7 @@ const resetManaCount = () => {
 <template>
   <h1>TCG Assist</h1>
 
-  <ModalButton modal="lhurgoyf" header-text="ルアゴイフカウント" @click="handleClick">
+  <ModalButton modal="lhurgoyf" header-text="ルアゴイフカウンター" @click="handleClick">
     <p>
       カードタイプ: <span class="font-bold">{{ checkedIds.length }}</span> 種類
     </p>
@@ -134,8 +140,9 @@ const resetManaCount = () => {
     v-model:allGraveyardCreatureCount="allGraveyardCreatureCount"
     v-model:myGraveyardCreatureCount="myGraveyardCreatureCount"
     :show="activeModal === 'lhurgoyf'"
-    :items="luhrgoyfCheckBoxes"
+    :items="LURGOYD_CHECKBOXES"
     @close="closeModal"
+    @reset="resetLuhrgyfCount"
   />
 
   <ManaModal
