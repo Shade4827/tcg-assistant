@@ -97,43 +97,45 @@ const resetManaCount = () => {
 <template>
   <h1>TCG Assist</h1>
 
-  <ModalButton modal="lhurgoyf" header-text="ルアゴイフカウンター" @click="handleClick">
-    <p>
-      カードタイプ: <span class="font-bold">{{ checkedIds.length }}</span> 種類
-    </p>
-    <div class="flex gap-4">
+  <div class="flex flex-col gap-4">
+    <ModalButton modal="lhurgoyf" header-text="ルアゴイフカウンター" @click="handleClick">
       <p>
-        すべての墓地:
-        <span class="font-bold">{{ allGraveyardCreatureCount }}</span>
+        カードタイプ: <span class="font-bold">{{ checkedIds.length }}</span> 種類
       </p>
-      <p>
-        自分の墓地: <span class="font-bold">{{ myGraveyardCreatureCount }}</span>
-      </p>
-    </div>
-  </ModalButton>
+      <div class="flex gap-4">
+        <p>
+          すべての墓地:
+          <span class="font-bold">{{ allGraveyardCreatureCount }}</span>
+        </p>
+        <p>
+          自分の墓地: <span class="font-bold">{{ myGraveyardCreatureCount }}</span>
+        </p>
+      </div>
+    </ModalButton>
 
-  <ModalButton modal="mana" header-text="マナカウンター" @click="handleClick">
-    <div class="flex gap-4">
-      <p>
-        白: <span class="font-bold">{{ manaCount.white.value }}</span>
-      </p>
-      <p>
-        青: <span class="font-bold">{{ manaCount.blue.value }}</span>
-      </p>
-      <p>
-        黒: <span class="font-bold">{{ manaCount.black.value }}</span>
-      </p>
-      <p>
-        赤: <span class="font-bold">{{ manaCount.red.value }}</span>
-      </p>
-      <p>
-        緑: <span class="font-bold">{{ manaCount.green.value }}</span>
-      </p>
-      <p>
-        無: <span class="font-bold">{{ manaCount.colorless.value }}</span>
-      </p>
-    </div>
-  </ModalButton>
+    <ModalButton modal="mana" header-text="マナカウンター" @click="handleClick">
+      <div class="flex gap-4">
+        <p>
+          白: <span class="font-bold">{{ manaCount.white.value }}</span>
+        </p>
+        <p>
+          青: <span class="font-bold">{{ manaCount.blue.value }}</span>
+        </p>
+        <p>
+          黒: <span class="font-bold">{{ manaCount.black.value }}</span>
+        </p>
+        <p>
+          赤: <span class="font-bold">{{ manaCount.red.value }}</span>
+        </p>
+        <p>
+          緑: <span class="font-bold">{{ manaCount.green.value }}</span>
+        </p>
+        <p>
+          無: <span class="font-bold">{{ manaCount.colorless.value }}</span>
+        </p>
+      </div>
+    </ModalButton>
+  </div>
 
   <LuhrgoyfModal
     v-model:checkIds="checkedIds"

@@ -23,6 +23,7 @@ const emit = defineEmits<{
           <NumberControl
             :model-value="count.value"
             :class="count.color"
+            class="w-32 h-24"
             @update:modelValue="
               (value: number) =>
                 emit('update:manaCount', {
