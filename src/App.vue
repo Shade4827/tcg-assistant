@@ -103,12 +103,22 @@ const emblemText = computed(() => {
 const resetEmblemList = () => {
   emblemList.value = []
 }
+
+const isExcerciseRight = ref(false)
+
+const toggleExcerciseRight = () => {
+  isExcerciseRight.value = !isExcerciseRight.value
+}
+
+const bgColorIsExcerciseRight = computed(() => {
+  return isExcerciseRight.value ? 'bg-green-600' : 'bg-gray-500'
+})
 </script>
 
 <template>
   <h1>TCG Assist</h1>
 
-  <div class="flex flex-col gap-4">
+  <div class="inline-flex flex-col gap-4 w-92">
     <ModalButton modal="lhurgoyf" header-text="ルアゴイフカウンター" @click="handleClick">
       <p>
         カードタイプ: <span class="font-bold">{{ checkedIds.length }}</span> 種類
@@ -155,6 +165,15 @@ const resetEmblemList = () => {
         {{ emblemText }}
       </p>
     </ModalButton>
+
+    <button
+      type="button"
+      class="border py-2 px-4 rounded text-white font-bold transition duration-300 h-12"
+      :class="bgColorIsExcerciseRight"
+      @click="toggleExcerciseRight"
+    >
+      権利行使: <span class="font-bold">{{ isExcerciseRight ? '✓' : '⚪︎' }}</span>
+    </button>
   </div>
 
   <LuhrgoyfModal
