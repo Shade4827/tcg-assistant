@@ -16,19 +16,20 @@ body {
 }
 
 #app {
-  min-height: 100vh;
+  height: 100dvh;
 }
 
 header {
   max-width: 500px;
-  height: 5vh;
+  height: 5dvh;
   margin: 0 auto;
 }
 
 main {
   width: 100%;
   max-width: 500px;
-  min-height: 95vh;
+  height: 95dvh;
   margin: 0 auto;
   background-color: white;
+  overflow-y: auto;
 }
