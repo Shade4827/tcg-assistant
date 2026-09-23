@@ -5,6 +5,7 @@ import LuhrgoyfModal from '@/components/modals/LuhrgoyfModal.vue'
 import ManaModal from '@/components/modals/ManaModal.vue'
 import EmblemModal from '@/components/modals/EmblemModal.vue'
 import NumberControl from '@/components/NumberControl.vue'
+import DiceModal from '@/components/modals/DiceModal.vue'
 import type { ModalId, ManaCount, Emblem } from '@/types/type'
 
 const activeModal = ref<ModalId | null>(null)
@@ -190,11 +191,15 @@ const resetAll = () => {
 
       <button
         type="button"
-        class="border py-2 px-4 rounded text-white font-bold transition duration-300 h-12"
+        class="border p-2 rounded text-white font-bold transition duration-300 h-12"
         :class="bgColorIsExcerciseRight"
         @click="toggleExcerciseRight"
       >
         権利行使: <span class="font-bold">{{ isExcerciseRight ? '✓' : '⚪︎' }}</span>
+      </button>
+
+      <button type="button" class="border p-2 rounded h-12" @click="handleClick('dice')">
+        ダイス
       </button>
     </div>
 
@@ -221,6 +226,8 @@ const resetAll = () => {
       @close="closeModal"
       @reset="resetEmblemList"
     />
+
+    <DiceModal :show="activeModal === 'dice'" @close="closeModal" />
   </main>
 </template>
 

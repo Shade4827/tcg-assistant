@@ -32,3 +32,33 @@ main {
   margin: 0 auto;
   background-color: white;
 }
+
+@keyframes dice-roll {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+
+  20% {
+    transform: translateY(-12px) rotate(72deg) scale(1.1);
+  }
+
+  40% {
+    transform: translateY(4px) rotate(144deg) scale(0.9);
+  }
+
+  60% {
+    transform: translateY(-10px) rotate(216deg) scale(1.1);
+  }
+
+  80% {
+    transform: translateY(2px) rotate(288deg) scale(0.95);
+  }
+
+  100% {
+    transform: translateY(0) rotate(360deg) scale(1);
+  }
+}
+
+.dice-rolling {
+  animation: dice-roll 0.2s linear infinite;
+}

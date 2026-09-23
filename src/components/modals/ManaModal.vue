@@ -16,7 +16,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <BaseModal :show="props.show" headerText="マナカウンター" @close="emit('close')">
+  <BaseModal :show="props.show" header-text="マナカウンター" @close="emit('close')">
     <div class="flex items-center mb-2">
       <div class="grid grid-cols-2 gap-4">
         <div v-for="(count, color) in props.manaCount" :key="color" class="flex items-center">

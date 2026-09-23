@@ -1,13 +1,13 @@
 import LuhrgoyfModal from '@/components/modals/LuhrgoyfModal.vue'
-import CounterModal from '@/components/modals/CounterModal.vue'
 import ManaModal from '@/components/modals/ManaModal.vue'
 import EmblemModal from '@/components/modals/EmblemModal.vue'
+import DiceModal from '@/components/modals/DiceModal.vue'
 
 const modals = {
   lhurgoyf: LuhrgoyfModal,
-  counter: CounterModal,
   mana: ManaModal,
   emblem: EmblemModal,
+  dice: DiceModal,
 } as const
 
 export type ModalId = keyof typeof modals

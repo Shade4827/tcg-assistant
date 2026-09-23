@@ -27,7 +27,7 @@ const handleChange = (id: string) => {
 </script>
 
 <template>
-  <BaseModal :show="props.show" headerText="ルアゴイフカウンター" @close="emit('close')">
+  <BaseModal :show="props.show" header-text="ルアゴイフカウンター" @close="emit('close')">
     <div class="grid grid-cols-2 gap-2 mb-2">
       <div v-for="item in items" :key="item.id" class="whitespace-nowrap">
         <input
