@@ -22,7 +22,7 @@ const closeModal = () => {
 
 <template>
   <BaseModal :show="props.show" header-text="紋章管理" @close="closeModal">
-    <div class="flex flex-col gap-2 min-w-[300px] h-[400px] overflow-y-auto">
+    <div class="flex flex-col gap-2 min-w-[340px] h-[400px] overflow-y-auto">
       <div
         v-for="(emblem, index) in props.modelValue"
         :key="index"
