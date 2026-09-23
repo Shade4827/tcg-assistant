@@ -45,7 +45,7 @@ const closeModal = () => {
 
         <button
           type="button"
-          class="border py-1 px-2 rounded hover:bg-red-600 transition duration-300"
+          class="border py-1 px-2 rounded cursor-pointer hover:bg-slate-200 transition duration-300"
           @click="
             emit(
               'update:modelValue',
@@ -61,7 +61,7 @@ const closeModal = () => {
     <div class="flex justify-center gap-2">
       <button
         type="button"
-        class="border py-2 px-4 rounded flex-1 border border-gray-300 mt-2"
+        class="border py-2 px-4 rounded flex-1 border border-gray-300 mt-2 cursor-pointer hover:bg-slate-200 transition duration-300"
         @click="emit('reset')"
       >
         リセット
@@ -69,7 +69,7 @@ const closeModal = () => {
 
       <button
         type="button"
-        class="border py-2 px-4 rounded flex-1 bg-blue-600 text-white mt-2"
+        class="border py-2 px-4 rounded flex-1 bg-blue-600 text-white mt-2 cursor-pointer hover:bg-blue-700 transition duration-300"
         @click="emit('update:modelValue', [...props.modelValue, { name: '', count: 1 }])"
       >
         + 紋章を追加

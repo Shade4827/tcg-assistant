@@ -34,10 +34,10 @@ const handleChange = (id: string) => {
           type="checkbox"
           :id="item.id"
           :checked="props.checkIds.includes(item.id)"
-          class="mr-1"
+          class="mr-1 cursor-pointer"
           @change="handleChange(item.id)"
         />
-        <label :for="item.id">{{ item.label }}</label>
+        <label :for="item.id" class="cursor-pointer">{{ item.label }}</label>
       </div>
     </div>
     <div class="flex flex-col gap-2 mb-4">
@@ -75,7 +75,11 @@ const handleChange = (id: string) => {
       </div>
     </div>
     <div class="flex justify-center mt-4">
-      <button type="button" class="border py-2 px-4 rounded" @click="emit('reset')">
+      <button
+        type="button"
+        class="border py-2 px-4 rounded cursor-pointer hover:bg-slate-200 transition duration-300"
+        @click="emit('reset')"
+      >
         リセット
       </button>
     </div>

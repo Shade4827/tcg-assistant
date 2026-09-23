@@ -36,7 +36,11 @@ const emit = defineEmits<{
       </div>
     </div>
     <div class="flex justify-center mt-4">
-      <button type="button" class="border py-2 px-4 rounded" @click="emit('reset')">
+      <button
+        type="button"
+        class="border py-2 px-4 rounded cursor-pointer hover:bg-slate-200 transition duration-300"
+        @click="emit('reset')"
+      >
         リセット
       </button>
     </div>

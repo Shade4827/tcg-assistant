@@ -88,7 +88,7 @@ const rollAll = () => {
           <div
             v-for="dice in dices"
             :key="dice.id"
-            class="flex size-20 items-center justify-center rounded-xl border-2 text-3xl font-bold"
+            class="flex size-20 items-center justify-center rounded-xl border-2 text-3xl font-bold cursor-pointer"
             :class="{ 'dice-rolling': dice.isRolling }"
             @click="removeDice(dice.id)"
           >
@@ -101,8 +101,10 @@ const rollAll = () => {
         <button
           v-for="diceSides in DICE_SIDES"
           :key="diceSides"
-          class="border rounded p-1 min-w-10"
-          :class="sides === diceSides ? 'bg-blue-500 text-white' : ''"
+          class="border rounded p-1 min-w-10 cursor-pointer transition duration-300"
+          :class="
+            sides === diceSides ? 'bg-blue-500 hover:bg-blue-700 text-white' : 'hover:bg-slate-200 '
+          "
           @click="changeSides(diceSides)"
         >
           d{{ diceSides }}
@@ -110,12 +112,54 @@ const rollAll = () => {
       </div>
 
       <div class="flex gap-2">
-        <button type="button" class="border rounded p-2" @click="addDice">+ 追加</button>
+        <button
+          type="button"
+          class="border rounded p-2 cursor-pointer hover:bg-slate-200 transition duration-300"
+          @click="addDice"
+        >
+          + 追加
+        </button>
 
-        <button type="button" class="border rounded bg-blue-600 text-white p-2" @click="rollAll">
+        <button
+          type="button"
+          class="border rounded bg-blue-600 text-white p-2 cursor-pointer hover:bg-blue-700 transition duration-300"
+          @click="rollAll"
+        >
           振る
         </button>
       </div>
     </div>
   </BaseModal>
 </template>
+
+<style scoped>
+@keyframes dice-roll {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+
+  20% {
+    transform: translateY(-12px) rotate(72deg) scale(1.1);
+  }
+
+  40% {
+    transform: translateY(4px) rotate(144deg) scale(0.9);
+  }
+
+  60% {
+    transform: translateY(-10px) rotate(216deg) scale(1.1);
+  }
+
+  80% {
+    transform: translateY(2px) rotate(288deg) scale(0.95);
+  }
+
+  100% {
+    transform: translateY(0) rotate(360deg) scale(1);
+  }
+}
+
+.dice-rolling {
+  animation: dice-roll 0.2s linear infinite;
+}
+</style>

@@ -131,7 +131,7 @@ const resetAll = () => {
 <template>
   <header class="sticky top-0 flex bg-blue-500 p-1">
     <h1 class="flex-1 p-1 text-xl text-white font-bold">TCG Assist</h1>
-    <button class="justify-end mr-2 text-white text-2xl" @click="resetAll">↻</button>
+    <button class="justify-end mr-2 text-white text-2xl cursor-pointer" @click="resetAll">↻</button>
   </header>
 
   <main class="p-4">
@@ -192,20 +192,30 @@ const resetAll = () => {
 
       <button
         type="button"
-        class="border p-2 rounded text-white font-bold transition duration-300 h-12"
+        class="border p-2 rounded text-white font-bold transition duration-300 h-12 cursor-pointer"
         :class="bgColorIsExcerciseRight"
         @click="toggleExcerciseRight"
       >
         権利行使: <span class="font-bold">{{ isExcerciseRight ? '✓' : '⚪︎' }}</span>
       </button>
 
-      <button type="button" class="border p-2 rounded h-12" @click="handleClick('dice')">
-        ダイス
-      </button>
+      <div class="flex h-12 gap-2 font-bold">
+        <button
+          type="button"
+          class="border p-2 rounded flex-1 cursor-pointer hover:bg-slate-200 transition duration-300"
+          @click="handleClick('dice')"
+        >
+          ダイス
+        </button>
 
-      <button type="button" class="border p-2 rounded h-12" @click="handleClick('coin')">
-        コイントス
-      </button>
+        <button
+          type="button"
+          class="border p-2 rounded flex-1 cursor-pointer hover:bg-slate-200 transition duration-300"
+          @click="handleClick('coin')"
+        >
+          コイントス
+        </button>
+      </div>
     </div>
 
     <LuhrgoyfModal

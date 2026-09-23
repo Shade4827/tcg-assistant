@@ -17,7 +17,9 @@ const emit = defineEmits<{
       <div class="relative z-10 flex flex-col rounded-lg bg-white m-4 p-4">
         <h3 v-if="props.headerText" class="text-lg font-bold mb-4">{{ props.headerText }}</h3>
 
-        <button @click="emit('close')" class="absolute top-2.5 right-4 text-3xl">×</button>
+        <button @click="emit('close')" class="absolute top-2.5 right-4 text-3xl cursor-pointer">
+          ×
+        </button>
 
         <div>
           <slot />

@@ -47,7 +47,7 @@ const flipCoin = () => {
     <div class="flex flex-col items-center">
       <div class="[perspective:1000px] m-8" @click="flipCoin">
         <div
-          class="relative size-32 [transform-style:preserve-3d]"
+          class="relative size-32 [transform-style:preserve-3d] cursor-pointer"
           :class="{ 'animate-coin-flip': isFlipping }"
           :style="{
             '--from-rotation': `${fromRotation}deg`,
@@ -70,7 +70,7 @@ const flipCoin = () => {
       </div>
 
       <button
-        class="rounded border px-4 py-2 disabled:opacity-50 bg-blue-500 text-white"
+        class="rounded border px-4 py-2 disabled:opacity-50 bg-blue-500 text-white cursor-pointer hover:bg-blue-700 transition duration-300"
         :disabled="isFlipping"
         @click="flipCoin"
       >
