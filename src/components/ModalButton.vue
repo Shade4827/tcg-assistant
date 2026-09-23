@@ -14,7 +14,7 @@ const emit = defineEmits<{
 <template>
   <div
     @click="emit('click', props.modal)"
-    class="outline rounded-xl p-2 cursor-pointer hover:bg-slate-200 transition duration-300"
+    class="outline rounded-xl p-2 h-25 cursor-pointer hover:bg-slate-200 transition duration-300"
   >
     <h2 v-if="props.headerText" class="text-lg font-bold mb-2">{{ props.headerText }}</h2>
     <slot />
