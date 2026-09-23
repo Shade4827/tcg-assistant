@@ -16,7 +16,7 @@ body {
 }
 
 #app {
-  min-height: 100vh;
+  height: 100vh;
 }
 
 header {
@@ -28,7 +28,8 @@ header {
 main {
   width: 100%;
   max-width: 500px;
-  min-height: 95vh;
+  height: 95vh;
   margin: 0 auto;
   background-color: white;
+  overflow-y: auto;
 }

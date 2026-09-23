@@ -129,127 +129,123 @@ const resetAll = () => {
 </script>
 
 <template>
-  <div class="h-screen">
-    <header class="sticky top-0 flex bg-blue-500 p-1">
-      <h1 class="flex-1 p-1 text-xl text-white font-bold">TCG Assist</h1>
-      <button class="justify-end mr-2 text-white text-2xl cursor-pointer" @click="resetAll">
-        ↻
-      </button>
-    </header>
+  <header class="sticky top-0 flex bg-blue-500 p-1">
+    <h1 class="flex-1 p-1 text-xl text-white font-bold">TCG Assist</h1>
+    <button class="justify-end mr-2 text-white text-2xl cursor-pointer" @click="resetAll">↻</button>
+  </header>
 
-    <main class="min-h-0 p-4 overflow-y-auto">
-      <div class="flex flex-col gap-4 w-full">
-        <ModalButton modal="lhurgoyf" header-text="ルアゴイフカウンター" @click="handleClick">
+  <main class="p-4">
+    <div class="flex flex-col gap-4 w-full">
+      <ModalButton modal="lhurgoyf" header-text="ルアゴイフカウンター" @click="handleClick">
+        <p>
+          カードタイプ: <span class="font-bold">{{ checkedIds.length }}</span> 種類
+        </p>
+        <div class="flex gap-4">
           <p>
-            カードタイプ: <span class="font-bold">{{ checkedIds.length }}</span> 種類
+            すべての墓地:
+            <span class="font-bold">{{ allGraveyardCreatureCount }}</span>
           </p>
-          <div class="flex gap-4">
-            <p>
-              すべての墓地:
-              <span class="font-bold">{{ allGraveyardCreatureCount }}</span>
-            </p>
-            <p>
-              自分の墓地: <span class="font-bold">{{ myGraveyardCreatureCount }}</span>
-            </p>
-          </div>
-        </ModalButton>
-
-        <ModalButton modal="mana" header-text="マナカウンター" @click="handleClick">
-          <div class="flex gap-4">
-            <p>
-              白: <span class="font-bold">{{ manaCount.white.value }}</span>
-            </p>
-            <p>
-              青: <span class="font-bold">{{ manaCount.blue.value }}</span>
-            </p>
-            <p>
-              黒: <span class="font-bold">{{ manaCount.black.value }}</span>
-            </p>
-            <p>
-              赤: <span class="font-bold">{{ manaCount.red.value }}</span>
-            </p>
-            <p>
-              緑: <span class="font-bold">{{ manaCount.green.value }}</span>
-            </p>
-            <p>
-              無: <span class="font-bold">{{ manaCount.colorless.value }}</span>
-            </p>
-          </div>
-        </ModalButton>
-
-        <ModalButton modal="emblem" header-text="紋章管理" @click="handleClick">
           <p>
-            紋章の数: <span class="font-bold">{{ emblemList.length }}</span>
+            自分の墓地: <span class="font-bold">{{ myGraveyardCreatureCount }}</span>
           </p>
-          <p class="w-80 truncate">
-            {{ emblemText }}
-          </p>
-        </ModalButton>
-
-        <hr class="text-gray-400" />
-
-        <div class="flex items-center rounded p-2 h-12 bg-cyan-500">
-          <p class="flex-1 text-white font-bold">呪文を唱えた回数</p>
-          <NumberControl v-model="spellCount" class="h-8 w-32 justify-end bg-white" />
         </div>
+      </ModalButton>
+
+      <ModalButton modal="mana" header-text="マナカウンター" @click="handleClick">
+        <div class="flex gap-4">
+          <p>
+            白: <span class="font-bold">{{ manaCount.white.value }}</span>
+          </p>
+          <p>
+            青: <span class="font-bold">{{ manaCount.blue.value }}</span>
+          </p>
+          <p>
+            黒: <span class="font-bold">{{ manaCount.black.value }}</span>
+          </p>
+          <p>
+            赤: <span class="font-bold">{{ manaCount.red.value }}</span>
+          </p>
+          <p>
+            緑: <span class="font-bold">{{ manaCount.green.value }}</span>
+          </p>
+          <p>
+            無: <span class="font-bold">{{ manaCount.colorless.value }}</span>
+          </p>
+        </div>
+      </ModalButton>
+
+      <ModalButton modal="emblem" header-text="紋章管理" @click="handleClick">
+        <p>
+          紋章の数: <span class="font-bold">{{ emblemList.length }}</span>
+        </p>
+        <p class="w-80 truncate">
+          {{ emblemText }}
+        </p>
+      </ModalButton>
+
+      <hr class="text-gray-400" />
+
+      <div class="flex items-center rounded p-2 h-12 bg-cyan-500">
+        <p class="flex-1 text-white font-bold">呪文を唱えた回数</p>
+        <NumberControl v-model="spellCount" class="h-8 w-32 justify-end bg-white" />
+      </div>
+
+      <button
+        type="button"
+        class="border p-2 rounded text-white font-bold transition duration-300 h-12 cursor-pointer"
+        :class="bgColorIsExcerciseRight"
+        @click="toggleExcerciseRight"
+      >
+        権利行使: <span class="font-bold">{{ isExcerciseRight ? '✓' : '⚪︎' }}</span>
+      </button>
+
+      <div class="flex h-12 gap-2 font-bold">
+        <button
+          type="button"
+          class="border p-2 rounded flex-1 cursor-pointer hover:bg-slate-200 transition duration-300"
+          @click="handleClick('dice')"
+        >
+          ダイス
+        </button>
 
         <button
           type="button"
-          class="border p-2 rounded text-white font-bold transition duration-300 h-12 cursor-pointer"
-          :class="bgColorIsExcerciseRight"
-          @click="toggleExcerciseRight"
+          class="border p-2 rounded flex-1 cursor-pointer hover:bg-slate-200 transition duration-300"
+          @click="handleClick('coin')"
         >
-          権利行使: <span class="font-bold">{{ isExcerciseRight ? '✓' : '⚪︎' }}</span>
+          コイントス
         </button>
-
-        <div class="flex h-12 gap-2 font-bold">
-          <button
-            type="button"
-            class="border p-2 rounded flex-1 cursor-pointer hover:bg-slate-200 transition duration-300"
-            @click="handleClick('dice')"
-          >
-            ダイス
-          </button>
-
-          <button
-            type="button"
-            class="border p-2 rounded flex-1 cursor-pointer hover:bg-slate-200 transition duration-300"
-            @click="handleClick('coin')"
-          >
-            コイントス
-          </button>
-        </div>
       </div>
+    </div>
 
-      <LuhrgoyfModal
-        v-model:checkIds="checkedIds"
-        v-model:allGraveyardCreatureCount="allGraveyardCreatureCount"
-        v-model:myGraveyardCreatureCount="myGraveyardCreatureCount"
-        :show="activeModal === 'lhurgoyf'"
-        :items="LURGOYD_CHECKBOXES"
-        @close="closeModal"
-        @reset="resetLuhrgyfCount"
-      />
+    <LuhrgoyfModal
+      v-model:checkIds="checkedIds"
+      v-model:allGraveyardCreatureCount="allGraveyardCreatureCount"
+      v-model:myGraveyardCreatureCount="myGraveyardCreatureCount"
+      :show="activeModal === 'lhurgoyf'"
+      :items="LURGOYD_CHECKBOXES"
+      @close="closeModal"
+      @reset="resetLuhrgyfCount"
+    />
 
-      <ManaModal
-        v-model:manaCount="manaCount"
-        :show="activeModal === 'mana'"
-        @close="closeModal"
-        @reset="resetManaCount"
-      />
+    <ManaModal
+      v-model:manaCount="manaCount"
+      :show="activeModal === 'mana'"
+      @close="closeModal"
+      @reset="resetManaCount"
+    />
 
-      <EmblemModal
-        v-model="emblemList"
-        :show="activeModal === 'emblem'"
-        @close="closeModal"
-        @reset="resetEmblemList"
-      />
+    <EmblemModal
+      v-model="emblemList"
+      :show="activeModal === 'emblem'"
+      @close="closeModal"
+      @reset="resetEmblemList"
+    />
 
-      <DiceModal :show="activeModal === 'dice'" @close="closeModal" />
+    <DiceModal :show="activeModal === 'dice'" @close="closeModal" />
 
-      <CoinModal :show="activeModal === 'coin'" @close="closeModal" />
-    </main>
-  </div>
+    <CoinModal :show="activeModal === 'coin'" @close="closeModal" />
+  </main>
 </template>
 
 <style scoped></style>
