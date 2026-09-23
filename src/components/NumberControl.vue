@@ -21,7 +21,7 @@ const decrement = () => {
   <div class="relative rounded-xl border">
     <button
       type="button"
-      class="absolute left-0 top-1/2 w-1/2 -translate-y-1/2 text-left pl-2 font-bold cursor-pointer"
+      class="absolute left-0 inset-y-0 w-1/2 text-left pl-2 font-bold cursor-pointer"
       @click="decrement"
     >
       −
@@ -29,7 +29,7 @@ const decrement = () => {
 
     <button
       type="button"
-      class="absolute right-0 top-1/2 w-1/2 -translate-y-1/2 text-right pr-2 font-bold cursor-pointer"
+      class="absolute right-0 inset-y-0 w-1/2 text-right pr-2 font-bold cursor-pointer"
       @click="increment"
     >
       ＋
