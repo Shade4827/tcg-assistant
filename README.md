@@ -34,3 +34,7 @@ pnpm build
 ```
 pnpm wrangler deploy
 ```
+
+## License
+
+[MIT License](https://choosealicense.com/licenses/mit/)
