@@ -6,6 +6,7 @@ import ManaModal from '@/components/modals/ManaModal.vue'
 import EmblemModal from '@/components/modals/EmblemModal.vue'
 import NumberControl from '@/components/NumberControl.vue'
 import DiceModal from '@/components/modals/DiceModal.vue'
+import CoinModal from '@/components/modals/CoinModal.vue'
 import type { ModalId, ManaCount, Emblem } from '@/types/type'
 
 const activeModal = ref<ModalId | null>(null)
@@ -201,6 +202,10 @@ const resetAll = () => {
       <button type="button" class="border p-2 rounded h-12" @click="handleClick('dice')">
         ダイス
       </button>
+
+      <button type="button" class="border p-2 rounded h-12" @click="handleClick('coin')">
+        コイントス
+      </button>
     </div>
 
     <LuhrgoyfModal
@@ -228,6 +233,8 @@ const resetAll = () => {
     />
 
     <DiceModal :show="activeModal === 'dice'" @close="closeModal" />
+
+    <CoinModal :show="activeModal === 'coin'" @close="closeModal" />
   </main>
 </template>
 
